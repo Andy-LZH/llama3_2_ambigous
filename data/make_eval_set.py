@@ -76,13 +76,15 @@ for item in data:
     labeled_image_path = os.path.join("images", labeled_image_name)
     original_image.save(labeled_image_path)
 
+    molmo_image_path = os.path.join("molmo", f"{item['id']}_molmo.png")
+
     # Append to CSV data
     csv_data.append({
         "question": question,
         "original_image": image_path,
         "labeled_image": labeled_image_path,
         "mask_image": mask_path,
-        "labels": ", ".join(labels)
+        "molmo_image": molmo_image_path
     })
 
 # Save CSV file
