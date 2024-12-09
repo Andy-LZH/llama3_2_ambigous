@@ -1,0 +1,120 @@
+/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/segment_anything/build_sam.py:105: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f)
+Processing items:  18%|█████████▏                                         | 18/100 [01:22<06:00,  4.39s/item]
+Processing item 1
+None
+None
+Processing item 3
+None
+None
+Processing item 4
+None
+None
+Processing item 6
+None
+None
+Processing item 8
+None
+None
+Processing item 10
+None
+None
+Processing item 12
+None
+None
+Processing item 13
+None
+None
+Processing item 14
+None
+None
+Processing item 15
+None
+None
+Processing item 18
+None
+None
+Processing item 19
+None
+None
+Processing item 21
+None
+None
+Processing item 22
+None
+None
+Processing item 24
+None
+None
+Processing item 25
+None
+None
+Processing item 26
+None
+None
+Processing item 27
+None
+None
+Processing item 28
+None
+None
+Processing item 29
+None
+None
+Processing item 30
+None
+None
+Processing item 32
+None
+None
+Processing item 33
+None
+None
+Traceback (most recent call last):
+  File "/projects/zhli3162/llama3_2_ambigous/script/eval.py", line 181, in <module>
+    predictor.set_image(image)
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/segment_anything/predictor.py", line 60, in set_image
+    self.set_torch_image(input_image_torch, image.shape[:2])
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/segment_anything/predictor.py", line 89, in set_torch_image
+    self.features = self.model.image_encoder(input_image)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/segment_anything/modeling/image_encoder.py", line 112, in forward
+    x = blk(x)
+        ^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/segment_anything/modeling/image_encoder.py", line 180, in forward
+    x = x + self.mlp(self.norm2(x))
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/segment_anything/modeling/common.py", line 26, in forward
+    return self.lin2(self.act(self.lin1(x)))
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/torch/nn/modules/activation.py", line 734, in forward
+    return F.gelu(input, approximate=self.approximate)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

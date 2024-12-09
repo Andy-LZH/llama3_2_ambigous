@@ -1,0 +1,16 @@
+{"time":"2024-12-09T01:09:18.870505237-07:00","level":"INFO","msg":"using version","core version":"0.19.0"}
+{"time":"2024-12-09T01:09:18.870519136-07:00","level":"INFO","msg":"created symlink","path":"/projects/zhli3162/llama3_2_ambigous/wandb/run-20241209_010918-rcnkd3g6/logs/debug-core.log"}
+{"time":"2024-12-09T01:09:18.980801568-07:00","level":"INFO","msg":"created new stream","id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:18.980842407-07:00","level":"INFO","msg":"stream: started","id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:18.980861108-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:18.980973289-07:00","level":"INFO","msg":"handler: started","stream_id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:18.981004469-07:00","level":"INFO","msg":"sender: started","stream_id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:19.111372359-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-09T01:09:24.34944056-07:00","level":"INFO","msg":"stream: closing","id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:24.349470501-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-09T01:09:24.350003482-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-09T01:09:24.636497066-07:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-09T01:09:24.720800468-07:00","level":"INFO","msg":"handler: closed","stream_id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:24.720822841-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:24.72086455-07:00","level":"INFO","msg":"sender: closed","stream_id":"rcnkd3g6"}
+{"time":"2024-12-09T01:09:24.721779735-07:00","level":"INFO","msg":"stream: closed","id":"rcnkd3g6"}

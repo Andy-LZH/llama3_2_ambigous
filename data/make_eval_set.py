@@ -22,10 +22,10 @@ for item in data:
     question = item["question"]
     image_url = item["imageURL"]
     if len(item["selected_parts_polygon"]) != 0:
-        polygons = item["selected_parts_polygon"]
+        masks = item["parts_masks"]
         labels = item["selected_parts_text"]
     else:
-        polygons = item["selected_objects_polygon"]
+        polygons = item["objects_masks"]
         labels = item["selected_objects_text"]
 
     # Download and save the image

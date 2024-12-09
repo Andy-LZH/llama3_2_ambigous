@@ -107,8 +107,8 @@ if __name__ == "__main__":
             }
         )
 
-        # limit the number of items to 5 
-        if idx == 4:
+        # limit the number of items to 50 for testing purposes
+        if idx == 99:
             break
     # Save the output to a JSON file
     with open("data/molmo_output_non_processed.json", "w") as f:

@@ -1,0 +1,1538 @@
+/projects/zhli3162/miniconda3/envs/llama3_2/lib/python3.11/site-packages/segment_anything/build_sam.py:105: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f)
+Processing items:   0%|                                                            | 0/100 [00:00<?, ?item/s]
+Processing item 0
+[(70.4, 301.41), (179.20000000000002, 342.78), (323.2, 342.78), (448.0, 339.234), (530.5600000000001, 31.126)]
+[(70.4, 301.41), (179.20000000000002, 342.78), (323.2, 342.78), (448.0, 339.234), (530.5600000000001, 31.126)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 1
+None
+None
+Processing item 2
+None
+[(79.0, 217.49999999999997), (129.0, 135.0), (132.5, 100.5), (135.0, 176.25), (140.0, 232.5), (150.0, 281.25), (155.0, 191.25), (157.5, 161.25), (162.5, 225.0), (167.5, 262.5)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 3
+None
+None
+Processing item 4
+None
+None
+Processing item 5
+None
+[(152.5, 187.5), (240.0, 236.25), (310.0, 178.5)]
+  plt.figure(figsize=(10, 10))
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing items:   7%|███▋                                                | 7/100 [00:42<08:15,  5.33s/item]
+Processing item 6
+None
+None
+Processing item 7
+[(87.04, 178.89300000000003), (204.8, 187.044), (331.52, 196.053), (464.64, 199.485)]
+[(87.04, 178.89300000000003), (204.8, 186.615), (331.52, 196.91099999999997), (464.64, 200.34300000000002)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 8
+None
+None
+Processing item 9
+[(221.34, 93.44), (352.24, 83.2), (376.04, 189.44000000000003), (437.92, 240.64), (461.71999999999997, 131.84)]
+[(221.34, 88.96000000000001), (352.24, 88.96000000000001), (376.04, 185.6), (437.92, 237.44), (461.71999999999997, 131.2)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 10
+None
+None
+Processing item 11
+None
+[(383.36, 343.2), (398.72, 343.2), (409.6, 343.2), (419.20000000000005, 343.2), (427.52, 343.2)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 12
+None
+None
+Processing item 13
+None
+None
+Processing item 14
+None
+None
+Processing item 15
+None
+None
+Processing item 16
+None
+[(185.6, 317.55), (396.8, 335.07)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 17
+[(121.6, 93.60000000000001), (262.4, 144.0), (547.2, 172.79999999999998)]
+[(121.6, 93.60000000000001), (262.4, 146.88), (547.2, 172.79999999999998)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 18
+None
+None
+Processing item 19
+None
+None
+Processing item 20
+[(2.5, 161.0), (5.0, 191.59), (5.500000000000001, 131.376), (5.500000000000001, 148.764), (5.500000000000001, 173.55800000000002), (5.500000000000001, 205.758), (5.500000000000001, 219.28199999999998), (5.500000000000001, 231.84), (6.0, 139.426), (6.0, 182.252), (6.0, 212.52), (6.500000000000001, 122.038)]
+[(5.0, 159.39), (50.0, 159.39), (52.5, 81.144), (55.0, 127.512), (55.0, 144.25599999999997), (55.0, 159.39), (57.5, 115.598), (60.0, 105.29400000000001), (62.5, 70.51799999999999), (65.0, 56.672000000000004), (67.5, 40.894), (70.0, 25.438)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 21
+None
+None
+Processing item 22
+None
+None
+Processing item 23
+[(7.650000000000001, 297.6), (59.50000000000001, 67.84), (59.50000000000001, 489.6), (112.625, 77.44), (129.625, 153.6), (131.75, 67.84), (159.375, 77.44), (184.875, 67.84), (201.875, 131.2), (212.5, 233.6), (265.625, 114.56), (267.75, 56.96000000000001)]
+[(12.325, 316.8), (70.125, 69.12), (118.57499999999999, 83.2), (127.925, 69.12), (132.6, 93.44), (157.675, 75.52000000000001), (168.3, 93.44), (174.25, 75.52000000000001), (206.54999999999998, 129.28), (218.875, 82.56), (221.0, 236.16), (263.5, 114.56)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 24
+None
+None
+Processing item 25
+None
+None
+Processing item 26
+None
+None
+Processing item 27
+None
+None
+Processing item 28
+None
+None
+Processing item 29
+None
+None
+Processing item 30
+None
+None
+Processing item 31
+None
+[(33.4, 472.5), (34.068, 408.0), (36.74, 343.0), (37.407999999999994, 282.5), (33.4, 472.5), (34.068, 408.0), (36.74, 343.0), (37.407999999999994, 282.5)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False  True ... False False False]
+  [False False  True ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]
+  [False False  True ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False  True ... False False False]
+  [False False  True ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]
+  [False False  True ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]
+  [False  True  True ... False False False]]]
+Processing item 32
+None
+None
+Processing item 33
+None
+None
+Processing item 34
+None
+[(120.345, 375.0), (161.364, 127.5), (259.335, 407.5), (325.44, 325.0)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 35
+None
+[(387.2, 98.21000000000001), (425.6, 98.21000000000001)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 36
+None
+None
+Processing item 37
+[(6.4, 264.0), (64.0, 264.0), (96.0, 264.0), (163.2, 264.0), (192.0, 264.0), (272.0, 264.0), (329.6, 264.0), (457.59999999999997, 247.20000000000002), (489.6, 249.60000000000002), (528.0, 249.60000000000002), (544.0, 230.39999999999998), (560.0, 249.60000000000002)]
+[(6.4, 247.20000000000002), (64.0, 247.20000000000002), (92.8, 247.20000000000002), (166.4, 247.20000000000002), (192.0, 247.20000000000002), (275.2, 247.20000000000002), (336.0, 247.20000000000002), (457.59999999999997, 239.04), (489.6, 240.0), (528.0, 239.04), (540.8, 231.84), (553.6, 239.04)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 38
+[(150.39999999999998, 132.0), (227.2, 132.0), (300.79999999999995, 128.64000000000001), (382.71999999999997, 118.08000000000001), (476.8, 118.08000000000001)]
+[(150.39999999999998, 132.0), (227.2, 132.0), (300.79999999999995, 128.64000000000001), (382.71999999999997, 118.08000000000001), (476.8, 118.08000000000001)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 39
+None
+None
+Processing item 40
+None
+None
+Processing item 41
+None
+[(70.92999999999999, 232.5), (83.03999999999999, 232.5), (93.42, 232.5), (103.8, 232.5), (113.83399999999999, 232.5), (122.83, 232.5), (131.48, 232.5), (140.13, 232.5), (148.78, 232.5), (157.43, 232.5), (166.07999999999998, 232.5), (174.73, 232.5)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 42
+None
+None
+Processing item 43
+[(419.20000000000005, 122.06), (489.6, 138.574)]
+[(413.43999999999994, 122.06), (428.8, 122.06), (441.59999999999997, 122.06), (453.12, 122.06)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 44
+[(11.520000000000001, 364.04), (64.64, 407.62899999999996), (109.44000000000001, 357.334), (134.4, 383.20000000000005), (178.55999999999997, 364.04), (233.6, 376.01500000000004), (259.20000000000005, 287.4), (262.4, 337.695), (268.8, 270.635), (268.8, 390.864), (275.2, 316.14000000000004), (281.6, 297.459)]
+None
+Processing item 45
+None
+None
+Processing item 46
+None
+[(220.8, 511.36), (306.72, 492.8), (387.36, 492.8), (460.79999999999995, 487.03999999999996)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 47
+None
+[(227.2, 260.64), (231.68000000000004, 223.20000000000002)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 48
+None
+None
+Processing item 49
+None
+None
+Processing item 50
+None
+None
+Processing item 51
+None
+None
+Processing item 52
+None
+None
+Processing item 53
+[(43.025999999999996, 619.52), (155.49, 576.0), (398.31, 582.4)]
+[(43.025999999999996, 617.6), (43.452, 605.4399999999999), (59.64000000000001, 605.4399999999999), (59.64000000000001, 617.6), (72.846, 605.4399999999999), (72.846, 617.6), (85.626, 605.4399999999999), (85.626, 617.6), (97.98, 605.4399999999999), (97.98, 617.6), (108.63, 605.4399999999999), (108.63, 617.6)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 54
+None
+None
+Processing item 55
+None
+None
+Processing item 56
+None
+None
+Processing item 57
+None
+None
+Processing item 58
+None
+None
+Processing item 59
+None
+[(524.8, 87.33), (537.6, 59.64000000000001), (537.6, 106.5), (588.8000000000001, 110.76), (595.2, 78.81)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 60
+[(44.800000000000004, 289.365), (70.4, 330.04800000000006), (156.8, 260.71500000000003), (201.6, 215.448)]
+[(44.800000000000004, 289.365), (70.4, 330.04800000000006), (156.8, 261.288), (201.6, 215.448)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 61
+None
+None
+Processing item 62
+None
+None
+Processing item 63
+None
+None
+Processing item 64
+None
+None
+Processing item 65
+None
+None
+Processing item 66
+None
+None
+Processing item 67
+None
+None
+Processing item 68
+None
+None
+Processing item 69
+None
+None
+Processing item 70
+None
+[(301.44, 344.28), (361.59999999999997, 329.46), (409.6, 349.97999999999996)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 71
+[(358.40000000000003, 316.8), (390.4, 316.8), (435.20000000000005, 316.8)]
+None
+Processing item 72
+None
+None
+Processing item 73
+None
+[(227.2, 101.00800000000001), (237.44, 115.56)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 74
+None
+None
+Processing item 75
+None
+None
+Processing item 76
+None
+None
+Processing item 77
+None
+None
+Processing item 78
+None
+None
+Processing item 79
+None
+None
+Processing item 80
+[(42.7, 295.04), (42.7, 628.48), (43.126999999999995, 211.20000000000002), (43.126999999999995, 387.2), (43.553999999999995, 7.68), (43.553999999999995, 69.76), (43.553999999999995, 146.56), (43.553999999999995, 511.36), (43.553999999999995, 579.8399999999999), (43.981, 448.64), (44.408, 253.44), (44.408, 338.56)]
+[(130.23499999999999, 302.71999999999997), (132.37, 457.59999999999997), (132.37, 473.6), (132.797, 486.4), (133.651, 496.63999999999993), (134.078, 506.88), (134.932, 442.88000000000005), (135.359, 433.28000000000003), (136.213, 424.31999999999994), (136.64000000000001, 416.0), (137.067, 407.68), (137.921, 400.0)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False  True ...  True False False]
+  [False False  True ...  True False False]
+  [False False  True ...  True False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False  True ...  True  True False]
+  [False False  True ...  True  True False]
+  [False False  True ...  True False False]]]
+Processing item 81
+[(35.2, 52.624), (625.28, 54.900999999999996)]
+[(35.2, 52.624), (624.0, 54.900999999999996)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 82
+[(49.184, 542.72), (163.66400000000002, 528.64), (224.72, 537.6), (393.896, 530.5600000000001)]
+[(49.184, 541.4399999999999), (163.66400000000002, 528.64), (224.72, 537.6), (393.896, 530.5600000000001)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 83
+None
+None
+Processing item 84
+[(19.5, 85.875), (20.0, 183.75), (365.0, 76.875)]
+[(19.5, 85.875), (20.0, 183.75), (365.0, 76.875)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 85
+None
+None
+Processing item 86
+None
+None
+Processing item 87
+[(137.6, 269.76000000000005), (289.28000000000003, 266.88), (530.5600000000001, 262.08000000000004)]
+[(124.80000000000001, 242.4), (285.44, 238.07999999999998), (451.2, 220.8), (472.32, 220.8), (489.6, 216.48000000000002), (521.5999999999999, 230.88000000000002)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 88
+None
+None
+Processing item 89
+None
+None
+Processing item 90
+None
+None
+Processing item 91
+None
+None
+Processing item 92
+None
+None
+Processing item 93
+None
+None
+Processing item 94
+None
+None
+Processing item 95
+None
+None
+Processing item 96
+[(422.40000000000003, 240.0), (512.0, 244.8), (524.8, 406.08), (556.8, 364.8)]
+[(422.40000000000003, 240.0), (512.0, 244.8), (512.0, 406.08), (553.6, 362.87999999999994)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 97
+None
+None
+Processing item 98
+[(307.2, 547.2), (328.8, 498.56)]
+[(307.2, 547.2), (328.8, 498.56)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing item 99
+None
+[(3.424, 102.4), (14.980000000000002, 102.4), (23.54, 102.4)]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+[[[ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  [ True  True  True ... False False False]
+  ...
+  [False False False ... False False False]
+  [False False False ... False False False]
+  [False False False ... False False False]]]
+Processing complete. Results logged to Weights & Biases.
