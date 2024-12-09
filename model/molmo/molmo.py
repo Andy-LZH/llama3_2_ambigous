@@ -106,10 +106,6 @@ if __name__ == "__main__":
                 "fs_molmo_output": fs_molmo_output,
             }
         )
-
-        # limit the number of items to 50 for testing purposes
-        if idx == 99:
-            break
     # Save the output to a JSON file
     with open("data/molmo_output_non_processed.json", "w") as f:
         json.dump(molmo_output, f)

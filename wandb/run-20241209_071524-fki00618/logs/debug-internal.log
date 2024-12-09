@@ -1,0 +1,16 @@
+{"time":"2024-12-09T07:15:24.85744044-07:00","level":"INFO","msg":"using version","core version":"0.19.0"}
+{"time":"2024-12-09T07:15:24.85746753-07:00","level":"INFO","msg":"created symlink","path":"/projects/zhli3162/llama3_2_ambigous/wandb/run-20241209_071524-fki00618/logs/debug-core.log"}
+{"time":"2024-12-09T07:15:24.967423984-07:00","level":"INFO","msg":"created new stream","id":"fki00618"}
+{"time":"2024-12-09T07:15:24.967444649-07:00","level":"INFO","msg":"stream: started","id":"fki00618"}
+{"time":"2024-12-09T07:15:24.967457537-07:00","level":"INFO","msg":"sender: started","stream_id":"fki00618"}
+{"time":"2024-12-09T07:15:24.967459885-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"fki00618"}
+{"time":"2024-12-09T07:15:24.967471014-07:00","level":"INFO","msg":"handler: started","stream_id":"fki00618"}
+{"time":"2024-12-09T07:15:25.127773153-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-09T08:01:59.02251735-07:00","level":"INFO","msg":"stream: closing","id":"fki00618"}
+{"time":"2024-12-09T08:01:59.022596387-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-09T08:01:59.023575687-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-09T08:01:59.345841815-07:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-09T08:01:59.592949562-07:00","level":"INFO","msg":"handler: closed","stream_id":"fki00618"}
+{"time":"2024-12-09T08:01:59.592970852-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"fki00618"}
+{"time":"2024-12-09T08:01:59.593003543-07:00","level":"INFO","msg":"sender: closed","stream_id":"fki00618"}
+{"time":"2024-12-09T08:01:59.594247032-07:00","level":"INFO","msg":"stream: closed","id":"fki00618"}
