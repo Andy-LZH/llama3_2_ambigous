@@ -1,5 +1,6 @@
 import json
 import requests
+import argparse
 from tqdm import tqdm
 from PIL import Image
 from transformers import AutoModelForCausalLM, AutoProcessor, GenerationConfig
@@ -51,19 +52,34 @@ def get_response(question, prompt, image_url):
 
 
 if __name__ == "__main__":
+    # argument parser to select from PACO, AnswerTherapy, or MSRA
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--dataset",
+        type=str,
+        choices=["PACO", "AnswerTherapy", "MSRA"],
+        required=True,
+    )
+
     # Load dataset
-    with open("data/ambiguous_data.json", "r") as file:
-        dataset = json.load(file)
+    datasets = {
+        "PACO": "data/paco/paco.json",
+        "AnswerTherapy": "data/AnswerTherapy/answer_therapy.json",
+        "MSRA": "data/MSRA/MSRA_RLE_627.json",
+    }
+    dataset_path = datasets[parser.parse_args().dataset]
+    with open(dataset_path) as f:
+        dataset = json.load(f)
 
     # Load prompts
     prompts_grd = load_prompts("data/prompt/prompts_grd.json")
-    prompts_grd_molmo = load_prompts("data/prompt/prompts_grd_molmo.json")
 
     # Extract original and molmo prompts
-    zs_original_prompt = prompts_grd["ZS"]["prompt"]
-    fs_original_prompt = prompts_grd["FS"]["prompt"]
-    zs_molmo_prompt = prompts_grd_molmo["ZS"]["prompt"]
-    fs_molmo_prompt = prompts_grd_molmo["FS"]["prompt"]
+    ZS = prompts_grd["ZS"]["prompt"]
+    ZS_CoT = prompts_grd["ZS_CoT"]["prompt"]
+    ZS_ECoT = prompts_grd["ZS_ECoT"]["prompt"]
+    FS = prompts_grd["FS"]["prompt"]
+    FS_ECoT = prompts_grd["FS_ECoT"]["prompt"]
 
     # Initialize the model and processor
     model_name = "allenai/Molmo-7B-D-0924"
@@ -75,37 +91,36 @@ if __name__ == "__main__":
     for idx, item in enumerate(tqdm(dataset, desc="Processing items", unit="item")):
         question = item["question"]
         image_url = item["imageURL"]
-        polygons = (
-            item["selected_parts_polygon"]
-            if item["selected_parts_polygon"]
-            else item["selected_objects_polygon"]
-        )
-        labels = (
-            item["selected_parts_text"]
-            if item["selected_parts_polygon"]
-            else item["selected_objects_text"]
-        )
 
         # Generate responses for each prompt type
-        zs_original_output = get_response(question, zs_original_prompt, image_url)
-        fs_original_output = get_response(question, fs_original_prompt, image_url)
-        zs_molmo_output = get_response(question, zs_molmo_prompt, image_url)
-        fs_molmo_output = get_response(question, fs_molmo_prompt, image_url)
+        ZS_output = get_response(question, ZS, image_url)
+        # ZS_CoT_output = get_response(question, ZS_CoT, image_url)
+        # ZS_ECoT_output = get_response(question, ZS_ECoT, image_url)
+        # FS_output = get_response(question, FS, image_url)
+        # FS_ECoT_output = get_response(question, FS_ECoT, image_url)
 
         # Append results
         molmo_output.append(
             {
-                "id": item["id"],
+                "id": idx,
+                "dataset": item["dataset"],
+                "ambiguity": item["ambiguity"],
+                "type": item["type"],
                 "question": question,
                 "imageURL": image_url,
-                "polygons": polygons,
-                "labels": labels,
-                "zs_original_output": zs_original_output,
-                "fs_original_output": fs_original_output,
-                "zs_molmo_output": zs_molmo_output,
-                "fs_molmo_output": fs_molmo_output,
+                "polygons": item["polygons"],
+                "masks": item["masks"],
+                "labels": item["labels"],
+                "ZS": ZS_output,
+                # if AnswerTherapy also add focus_ambiguity_attribute
+                "focus_ambiguity_attribute": item.get("focus_ambiguity_attribute", None),
             }
         )
+        if idx == 20:
+            break
     # Save the output to a JSON file
-    with open("data/molmo_output_non_processed.json", "w") as f:
+    # load directory of dataset path and save molmo_output
+    output_path = dataset_path.replace(".json", "_molmo.json")
+    with open(output_path, "w") as f:
         json.dump(molmo_output, f)
+    print(f"Results saved to {output_path}")

@@ -72,7 +72,7 @@ for key in ambigous_data.keys():
                 ambigous_data[key]["polygons"].append(ambigous_data[key]["objects_polygons"][index])
                 ambigous_data[key]["masks"] = []
                 ambigous_data[key]["labels"].append(ambigous_data[key]["objects_labels"][index])
-            ambigous_data[key]["hierarchy"] = "object"
+            ambigous_data[key]["type"] = "object"
 
         ambigous_data[key].pop("selected_parts_polygons")
         ambigous_data[key].pop("selected_objects_polygons")
@@ -124,6 +124,7 @@ for key in ambigous_data.keys():
                 unambigous_data[key]["labels"].append(unambigous_data[key]["parts_labels"][
                     index
                 ])
+            unambigous_data[key]["type"] = "part"
             
 
         else:
