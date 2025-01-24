@@ -1,7 +1,7 @@
 import json
 import random
 
-img_location = "/pl/active/pl_ivc-group/datasets/coco/train2014/"
+img_location = "/scratch/alpine/zhli3162/train2014/"
 # Load the data
 ambigous_data = json.load(open("AnswerTherapy_ambiguous_grd.json"))
 unambigous_data = json.load(open("AnswerTherapy_unambiguous_grd.json"))
