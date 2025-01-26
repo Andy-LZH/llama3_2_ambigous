@@ -85,7 +85,11 @@ if __name__ == "__main__":
     prompts_grd = load_prompts("data/prompt/prompts_grd.json")
 
     # Extract original and molmo prompts
-    ZS = prompts_grd["ZS"]["prompt"]
+    # ZS = prompts_grd["ZS"]["prompt"]
+    ZS_CoT = prompts_grd["ZS_CoT"]["prompt"]
+    ZS_ECoT = prompts_grd["ZS_ECoT"]["prompt"]
+    FS = prompts_grd["FS"]["prompt"]
+    FS_ECoT = prompts_grd["FS_ECoT"]["prompt"]
 
     # Initialize the model and processor
     model_name = "allenai/Molmo-7B-D-0924"
@@ -101,7 +105,11 @@ if __name__ == "__main__":
             image_url = item["imageURL"]
 
             # Generate responses for each prompt type
-            ZS_output = get_response(question, ZS, image_url)
+            # ZS_output = get_response(question, ZS, image_url)
+            ZS_CoT_output = get_response(question, ZS_CoT, image_url)
+            ZS_ECoT_output = get_response(question, ZS_ECoT, image_url)
+            FS_output = get_response(question, FS, image_url)
+            FS_ECoT_output = get_response(question, FS_ECoT, image_url)
 
             # Append results
             molmo_output.append(
@@ -115,7 +123,12 @@ if __name__ == "__main__":
                     "polygons": item.get("polygons", None),
                     "masks": item.get("masks", None),
                     "labels": item.get("labels", None),
-                    "ZS": ZS_output,
+                    # "ZS": ZS_output,
+                    "ZS_CoT": ZS_CoT_output,
+                    "ZS_ECoT": ZS_ECoT_output,
+                    "FS": FS_output,
+                    "FS_ECoT": FS_ECoT_output,
+                    ""
                     "focus_ambiguity_attribute": item.get(
                         "focus_ambiguity_attribute", None
                     ),
@@ -125,13 +138,13 @@ if __name__ == "__main__":
             errors.append({"id": idx, "error": str(e), "item": item})
 
     # Save the output to a JSON file
-    output_path = dataset_path.replace(".json", "_molmo.json")
+    output_path = dataset_path.replace(".json", "_molmo_fs.json")
     with open(output_path, "w") as f:
         json.dump(molmo_output, f)
     print(f"Results saved to {output_path}")
 
     # Save the errors to a separate JSON file
-    error_path = dataset_path.replace(".json", "_errors.json")
+    error_path = dataset_path.replace(".json", "_errors_fs.json")
     with open(error_path, "w") as f:
         json.dump(errors, f)
     print(f"Errors saved to {error_path}")
