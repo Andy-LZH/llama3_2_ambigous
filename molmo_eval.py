@@ -64,7 +64,7 @@ def extract_points(zs_output, image_width, image_height):
     pattern = r'x\d*=["\']?([0-9.]+)["\']?\s+y\d*=["\']?([0-9.]+)["\']?'
     matches = re.findall(pattern, zs_output)
     if not matches:
-        return None
+        raise ValueError("No points found in zs_output")
     return [
         (float(x) / 100 * image_width, float(y) / 100 * image_height)
         for x, y in matches
@@ -332,8 +332,23 @@ if __name__ == "__main__":
         # Download and set image, and get image height and width, and molmo output
         molmo_output, image, image_height, image_width = handling_data_point(data)
         predictor.set_image(image)
-        molmo_points = extract_points(molmo_output, image_width, image_height)
 
+        # handle molmo output points extraction if no points found then report 0,0,0 in mAP, unionIoU, MaxIoU and add a special error code 1 to that cuase was molmo failure
+        try:
+            molmo_points = extract_points(molmo_output, image_width, image_height)
+        except Exception as e:
+            output_dict["error"] = 1
+            print("Molmo failed for id:", index_id)
+            wandb.log(
+                {
+                    "Union IoU": 0,
+                    "Max IoU": 0,
+                    "mAP": 0,
+                    "error": 1,
+                }
+            )
+            outputs.append(output_dict)
+            continue
         if molmo_points is not None:
             masks_molmo = []
             plt.figure(figsize=(10, 10))
@@ -418,6 +433,11 @@ if __name__ == "__main__":
                     "mAP": mAP,
                 }
             )
+
+            output_dict["Union IoU"] = union_iou
+            output_dict["Max IoU"] = max_iou
+            output_dict["mAP"] = mAP
+
             union_iou_all += union_iou
             max_iou_all += max_iou
             map_all += mAP
