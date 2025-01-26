@@ -56,7 +56,7 @@ def loader(dataset, test=False):
         return dataset
 
     elif dataset == "AnswerTherapy":
-        location = "data/AnswerTherapy/answer_therapy.json"
+        location = "data/AnswerTherapy/answer_therapy_molmo.json"
         dataset = json.load(open(location))
         if test:
             dataset = dataset[:10]

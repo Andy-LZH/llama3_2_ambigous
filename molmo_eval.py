@@ -14,6 +14,7 @@ from script.utils import loader
 import wandb
 import argparse
 import os
+import base64
 
 
 def show_mask(mask, ax, random_color=False):
@@ -284,7 +285,8 @@ if __name__ == "__main__":
         os.makedirs(pred_masks_path, exist_ok=True)
 
     # Load dataset
-    location_prefix = location_prefix_dict[parser.parse_args().dataset]
+    dataset_name = parser.parse_args().dataset
+    location_prefix = location_prefix_dict[dataset_name]
     dataset = loader(parser.parse_args().dataset, parser.parse_args().test)
     print("Dataset loaded.")
 
@@ -310,145 +312,163 @@ if __name__ == "__main__":
     union_iou_all = 0
     max_iou_all = 0
     map_all = 0
+    dataset_length = len(dataset)
+
     for index_id, data in enumerate(
         tqdm(dataset, desc="Processing items", unit="item")
     ):
 
-        output_dict = {
-            "id": data["id"],
-            "question": data["question"],
-            "imageURL": data["imageURL"],
-            "ambiguity": data["ambiguity"],
-            "type": data.get("type", None),
-            "focus_ambiguity_attribute": data.get("focus_ambiguity_attribute", None),
-            "zs_molmo_output": data.get("ZS", None),
-            "gt_masks_location": None,
-            "pred_masks_location": None,
-            "mAP": None,
-            "Union IoU": None,
-            "Max IoU": None,
-        }
-
-        # Download and set image, and get image height and width, and molmo output
-        molmo_output, image, image_height, image_width = handling_data_point(data)
-        predictor.set_image(image)
-
-        # handle molmo output points extraction if no points found then report 0,0,0 in mAP, unionIoU, MaxIoU and add a special error code 1 to that cuase was molmo failure
         try:
-            molmo_points = extract_points(molmo_output, image_width, image_height)
+            output_dict = {
+                "id": data["id"],
+                "question": data["question"],
+                "imageURL": data["imageURL"],
+                "ambiguity": data["ambiguity"],
+                "type": data.get("type", None),
+                "focus_ambiguity_attribute": data.get("focus_ambiguity_attribute", None),
+                "zs_molmo_output": data.get("ZS", None),
+                "gt_masks_location": None,
+                "pred_masks_location": None,
+                "mAP": None,
+                "Union IoU": None,
+                "Max IoU": None,
+            }
+
+            # Download and set image, and get image height and width, and molmo output
+            molmo_output, image, image_height, image_width = handling_data_point(data)
+            predictor.set_image(image)
+
+            # handle molmo output points extraction if no points found then report 0,0,0 in mAP, unionIoU, MaxIoU and add a special error code 1 to that cuase was molmo failure
+            try:
+                molmo_points = extract_points(molmo_output, image_width, image_height)
+            except Exception as e:
+                output_dict["error"] = 1
+                print("Molmo failed for id:", index_id)
+                wandb.log(
+                    {
+                        "Union IoU": 0,
+                        "Max IoU": 0,
+                        "mAP": 0,
+                        "error": 1,
+                    }
+                )
+                outputs.append(output_dict)
+                continue
+            if molmo_points is not None:
+                masks_molmo = []
+                plt.figure(figsize=(10, 10))
+                plt.imshow(image)
+                for index, points in enumerate(molmo_points):
+                    masks, confidence_score = extract_masks_score(list(points))
+                    if masks is not None:
+                        show_points(np.array([list(points)]), np.array([1]), plt.gca())
+                        show_mask(masks[0], plt.gca())
+                    masks_molmo.append(masks)
+                plt.savefig(f"{location_prefix}/pred_masks/id_{index_id}_molmo.png")
+                plt.close()
+                output_dict["pred_masks_location"] = (
+                    f"{location_prefix}/pred_masks/id_{index_id}_mask_x_molmo.png"
+                )
+
+                # now encode the masks to rle and merge together
+                rles_molmo = []
+                for index, masks in enumerate(masks_molmo):
+                    masks = np.asfortranarray(masks)
+                    rle = maskUtils.encode(masks[0])
+                    rles_molmo.append(rle)
+                rle_molmo = maskUtils.merge(rles_molmo)
+
+            # Calculate the mAP, Union IoU, and Max IoU
+            if dataset_name == "PACO" or dataset_name == "AnswerTherapy":
+                focus_regions = data["polygons"]
+                rles_gt = []
+                for index, polygons in enumerate(focus_regions):
+                    rle = polygon_to_RLE(polygons, image_height, image_width)
+                    rles_gt.append(rle)
+                    print("rle", index, rle)
+                gt_rle = maskUtils.merge(rles_gt)
+            elif dataset_name == "MSRA":
+                rles_gt = data["masks"]
+                rle_encoded = rles_gt[0]["counts"]
+                rles_gt[0]["counts"] = base64.b64decode(rle_encoded)
+                gt_rle = rles_gt[0]
+
+            # iterate over the focus regions and convert to rle
+            gt_binary_masks = maskUtils.decode(gt_rle)
+            gt_binary_masks = gt_binary_masks.astype(np.uint8)
+
+            # draw the gt masks
+            plt.figure(figsize=(10, 10))
+            plt.imshow(image)
+            show_mask(gt_binary_masks, plt.gca())
+            plt.savefig(f"{location_prefix}/gt_masks/id_{index_id}_gt.png")
+            plt.close()
+            output_dict["gt_masks_location"] = (
+                f"{location_prefix}/gt_masks/id_{index_id}_gt.png"
+            )
+
+            if molmo_points is not None:
+                # add padding to rles_molmo or rles_gt such that they have same length
+                # rles_molmo, rles_gt = add_padding_if_mixmatch(rles_molmo, rles_gt, image_height, image_width)
+                iou_matrix = maskUtils.iou(rles_molmo, rles_gt, [0] * len(rles_gt))
+                iou_matrix = np.array(iou_matrix)
+                max_iou = np.max(iou_matrix)
+
+                rles_gt_merge = maskUtils.merge(rles_gt)
+                rles_molmo_merge = maskUtils.merge(rles_molmo)
+                union_iou = maskUtils.iou([rles_molmo_merge], [rles_gt_merge], [0])
+                union_iou = union_iou[0][0]
+
+                mAP = calculate_mAP(
+                    rles_molmo,
+                    rles_gt,
+                    data["question"],
+                    {
+                        "file_name": data["imageURL"],
+                        "height": image_height,
+                        "width": image_width,
+                    },
+                    confidence_score[0],
+                )
+
+                # log the metrics
+                wandb.log(
+                    {
+                        "Union IoU": union_iou,
+                        "Max IoU": max_iou,
+                        "mAP": mAP,
+                    }
+                )
+
+                output_dict["Union IoU"] = union_iou
+                output_dict["Max IoU"] = max_iou
+                output_dict["mAP"] = mAP
+
+                union_iou_all += union_iou
+                max_iou_all += max_iou
+                map_all += mAP
+
+            outputs.append(output_dict)
         except Exception as e:
-            output_dict["error"] = 1
-            print("Molmo failed for id:", index_id)
+            print("Error in item:", index_id, str(e))
+            output_dict["error"] = str(e)
+            outputs.append(output_dict)
             wandb.log(
                 {
                     "Union IoU": 0,
                     "Max IoU": 0,
                     "mAP": 0,
-                    "error": 1,
+                    "error": 2,
                 }
             )
-            outputs.append(output_dict)
+            dataset_length -= 1
             continue
-        if molmo_points is not None:
-            masks_molmo = []
-            plt.figure(figsize=(10, 10))
-            plt.imshow(image)
-            for index, points in enumerate(molmo_points):
-                masks, confidence_score = extract_masks_score(list(points))
-                if masks is not None:
-                    show_points(np.array([list(points)]), np.array([1]), plt.gca())
-                    show_mask(masks[0], plt.gca())
-                masks_molmo.append(masks)
-            plt.savefig(f"{location_prefix}/pred_masks/id_{index_id}_molmo.png")
-            plt.close()
-            output_dict["pred_masks_location"] = (
-                f"{location_prefix}/pred_masks/id_{index_id}_mask_x_molmo.png"
-            )
-
-            # now encode the masks to rle and merge together
-            rles_molmo = []
-            for index, masks in enumerate(masks_molmo):
-                masks = np.asfortranarray(masks)
-                rle = maskUtils.encode(masks[0])
-                rles_molmo.append(rle)
-            rle_molmo = maskUtils.merge(rles_molmo)
-
-        # Calculate the mAP, Union IoU, and Max IoU
-        focus_regions = data["polygons"]
-        # gt_binary_masks = nested_polygons_to_binary_mask(
-        #     focus_regions, image_height, image_width
-        # ).astype(np.uint8)
-
-        # iterate over the focus regions and convert to rle
-        rles_gt = []
-        for index, polygons in enumerate(focus_regions):
-            rle = polygon_to_RLE(polygons, image_height, image_width)
-            rles_gt.append(rle)
-        gt_rle = maskUtils.merge(rles_gt)
-        gt_binary_masks = maskUtils.decode(gt_rle)
-        gt_binary_masks = gt_binary_masks.astype(np.uint8)
-
-        # draw the gt masks
-        plt.figure(figsize=(10, 10))
-        plt.imshow(image)
-        show_mask(gt_binary_masks, plt.gca())
-        plt.savefig(f"{location_prefix}/gt_masks/id_{index_id}_gt.png")
-        plt.close()
-        output_dict["gt_masks_location"] = (
-            f"{location_prefix}/gt_masks/id_{index_id}_gt.png"
-        )
-
-        if molmo_points is not None:
-            # add padding to rles_molmo or rles_gt such that they have same length
-            # rles_molmo, rles_gt = add_padding_if_mixmatch(rles_molmo, rles_gt, image_height, image_width)
-            iou_matrix = maskUtils.iou(rles_molmo, rles_gt, [0] * len(rles_gt))
-            iou_matrix = np.array(iou_matrix)
-            max_iou = np.max(iou_matrix)
-
-            rles_gt_merge = maskUtils.merge(rles_gt)
-            rles_molmo_merge = maskUtils.merge(rles_molmo)
-            union_iou = maskUtils.iou([rles_molmo_merge], [rles_gt_merge], [0])
-            union_iou = union_iou[0][0]
-
-            print("Union IoU:", union_iou)
-            print("Max IoU:", max_iou)
-
-            mAP = calculate_mAP(
-                rles_molmo,
-                rles_gt,
-                data["question"],
-                {
-                    "file_name": data["imageURL"],
-                    "height": image_height,
-                    "width": image_width,
-                },
-                confidence_score[0],
-            )
-
-            # log the metrics
-            wandb.log(
-                {
-                    "Union IoU": union_iou,
-                    "Max IoU": max_iou,
-                    "mAP": mAP,
-                }
-            )
-
-            output_dict["Union IoU"] = union_iou
-            output_dict["Max IoU"] = max_iou
-            output_dict["mAP"] = mAP
-
-            union_iou_all += union_iou
-            max_iou_all += max_iou
-            map_all += mAP
-
-        outputs.append(output_dict)
 
     wandb.log(
         {
-            "Union IoU": union_iou_all / len(dataset),
-            "Max IoU": max_iou_all / len(dataset),
-            "mAP": map_all / len(dataset),
+            "Union IoU": union_iou_all / dataset_length,
+            "Max IoU": max_iou_all / dataset_length,
+            "mAP": map_all / dataset_length,
         }
     )
 
