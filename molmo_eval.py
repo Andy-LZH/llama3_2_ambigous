@@ -219,94 +219,91 @@ if __name__ == "__main__":
     for index_id, data in enumerate(
         tqdm(dataset, desc="Processing items", unit="item")
     ):
-        # try:
+        try:
 
-        output_dict = {
-            "id": data["id"],
-            "question": data["question"],
-            "imageURL": data["imageURL"],
-            "ambiguity": data["ambiguity"],
-            "type": data.get("type", None),
-            "focus_ambiguity_attribute": data.get("focus_ambiguity_attribute", None),
-            "zs_molmo_output": data.get("ZS", None),
-            "gt_masks_location": None,
-            "pred_masks_location": None,
-            "mAP": None,
-            "Union IoU": None,
-            "Max IoU": None,
-        }
+            output_dict = {
+                "id": data["id"],
+                "question": data["question"],
+                "imageURL": data["imageURL"],
+                "ambiguity": data["ambiguity"],
+                "type": data.get("type", None),
+                "focus_ambiguity_attribute": data.get(
+                    "focus_ambiguity_attribute", None
+                ),
+                "zs_molmo_output": data.get("ZS", None),
+                "gt_masks_location": None,
+                "pred_masks_location": None,
+                "mAP": None,
+                "Union IoU": None,
+                "Max IoU": None,
+            }
 
-        # Download and set image, and get image height and width, and molmo output
-        molmo_output, image, image_height, image_width = handling_data_point(data)
-        print(image.shape)
-        predictor.set_image(image)
-        molmo_points = extract_points(molmo_output, image_width, image_height)
+            # Download and set image, and get image height and width, and molmo output
+            molmo_output, image, image_height, image_width = handling_data_point(data)
+            predictor.set_image(image)
+            molmo_points = extract_points(molmo_output, image_width, image_height)
 
-        print("Processing item", index_id)
+            if molmo_points is not None:
+                masks_molmo = []
+                plt.figure(figsize=(10, 10))
+                plt.imshow(image)
+                for index, points in enumerate(molmo_points):
+                    masks = extract_masks(list(points))
+                    if masks is not None:
+                        show_points(np.array([list(points)]), np.array([1]), plt.gca())
+                        show_mask(masks[0], plt.gca())
+                    masks_molmo.append(masks)
+                plt.savefig(f"{location_prefix}/pred_masks/id_{index_id}_molmo.png")
+                plt.close()
+                output_dict["pred_masks_location"] = (
+                    f"{location_prefix}/pred_masks/id_{index_id}_mask_x_molmo.png"
+                )
 
-        if molmo_points is not None:
-            masks_molmo = []
+            # Calculate the union IoU
+            focus_regions = data["polygons"]
+
+            binary_masks = nested_polygons_to_binary_mask(
+                focus_regions, image_height, image_width
+            ).astype(np.uint8)
+
+            # draw the gt masks
             plt.figure(figsize=(10, 10))
             plt.imshow(image)
-            for index, points in enumerate(molmo_points):
-                masks = extract_masks(list(points))
-                if masks is not None:
-                    show_points(np.array([list(points)]), np.array([1]), plt.gca())
-                    show_mask(masks[0], plt.gca())
-                masks_molmo.append(masks)
-            plt.savefig(f"{location_prefix}/pred_masks/id_{index_id}_molmo.png")
+            for index, mask in enumerate(binary_masks):
+                show_mask(mask, plt.gca())
+            plt.savefig(f"{location_prefix}/gt_masks/id_{index_id}_gt.png")
             plt.close()
-            output_dict["pred_masks_location"] = (
-                f"{location_prefix}/pred_masks/id_{index_id}_mask_x_molmo.png"
+            output_dict["gt_masks_location"] = (
+                f"{location_prefix}/gt_masks/id_{index_id}_gt.png"
             )
 
-        # Calculate the union IoU
-        focus_regions = data["polygons"]
+            if molmo_points is not None:
+                avg_iou_zs = 0
+                max_iou_zs = 0
+                for mask in masks_molmo:
+                    max_iou_zs_original = 0
+                    mask = mask[0]  # Extract the first mask from the prediction output
+                    mask = mask.astype(np.uint8)
+                    mask = mask.reshape(image_height, image_width)
 
-        binary_masks = nested_polygons_to_binary_mask(
-            focus_regions, image_height, image_width
-        ).astype(np.uint8)
+                    # Loop through all ground truth masks
+                    for binary_mask in binary_masks:
+                        # Compute IoU
+                        intersection = np.logical_and(mask, binary_mask)
+                        union = np.logical_or(mask, binary_mask)
+                        iou = np.sum(intersection) / np.sum(union)
+                        # Update maximum IoU if the current one is higher
+                        max_iou_zs = max(max_iou_zs, iou)
+                    avg_iou_zs += max_iou_zs
+                union_iou_zs += avg_iou_zs / len(mask)
+                output_dict["Max IoU"] = avg_iou_zs / len(masks)
 
-        # draw the gt masks
-        plt.figure(figsize=(10, 10))
-        plt.imshow(image)
-        for index, mask in enumerate(binary_masks):
-            show_mask(mask, plt.gca())
-        plt.savefig(f"{location_prefix}/gt_masks/id_{index_id}_gt.png")
-        plt.close()
-        output_dict["gt_masks_location"] = (
-            f"{location_prefix}/gt_masks/id_{index_id}_gt.png"
-        )
+            wandb.log(output_dict)
+            outputs.append(output_dict)
 
-        if molmo_points is not None:
-            avg_iou_zs = 0
-            max_iou_zs = 0
-            for mask in masks_molmo:
-                max_iou_zs_original = 0
-                mask = mask[0]  # Extract the first mask from the prediction output
-                mask = mask.astype(np.uint8)
-                mask = mask.reshape(image_height, image_width)
-
-                # Loop through all ground truth masks
-                for binary_mask in binary_masks:
-                    # Compute IoU
-                    intersection = np.logical_and(mask, binary_mask)
-                    union = np.logical_or(mask, binary_mask)
-                    iou = np.sum(intersection) / np.sum(union)
-                    # Update maximum IoU if the current one is higher
-                    max_iou_zs = max(max_iou_zs, iou)
-                avg_iou_zs += max_iou_zs
-            union_iou_zs += avg_iou_zs / len(mask)
-            output_dict["Max IoU"] = avg_iou_zs / len(masks)
-
-        wandb.log(output_dict)
-        outputs.append(output_dict)
-
-        # except Exception as e:
-        #     wandb.log({"error": str(e), "step": index_id})
-        #     print(e)
-        #     print("Error processing item", index_id)
-        #     continue
+        except Exception as e:
+            wandb.log({"error": str(e), "step": index_id})
+            continue
 
     wandb.log(
         {

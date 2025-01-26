@@ -1,0 +1,16 @@
+{"time":"2025-01-26T00:15:13.998888608-07:00","level":"INFO","msg":"using version","core version":"0.19.0"}
+{"time":"2025-01-26T00:15:13.998951728-07:00","level":"INFO","msg":"created symlink","path":"/projects/zhli3162/llama3_2_ambigous/wandb/run-20250126_001513-2x3ogwga/logs/debug-core.log"}
+{"time":"2025-01-26T00:15:14.116794722-07:00","level":"INFO","msg":"created new stream","id":"2x3ogwga"}
+{"time":"2025-01-26T00:15:14.116832976-07:00","level":"INFO","msg":"stream: started","id":"2x3ogwga"}
+{"time":"2025-01-26T00:15:14.116991753-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"2x3ogwga"}
+{"time":"2025-01-26T00:15:14.117065789-07:00","level":"INFO","msg":"sender: started","stream_id":"2x3ogwga"}
+{"time":"2025-01-26T00:15:14.117200558-07:00","level":"INFO","msg":"handler: started","stream_id":"2x3ogwga"}
+{"time":"2025-01-26T00:15:14.298427295-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-26T00:16:08.443810889-07:00","level":"INFO","msg":"stream: closing","id":"2x3ogwga"}
+{"time":"2025-01-26T00:16:08.443962828-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-26T00:16:08.44524916-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-26T00:16:08.716948527-07:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-26T00:16:08.792383257-07:00","level":"INFO","msg":"handler: closed","stream_id":"2x3ogwga"}
+{"time":"2025-01-26T00:16:08.792431262-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"2x3ogwga"}
+{"time":"2025-01-26T00:16:08.792467386-07:00","level":"INFO","msg":"sender: closed","stream_id":"2x3ogwga"}
+{"time":"2025-01-26T00:16:08.794753038-07:00","level":"INFO","msg":"stream: closed","id":"2x3ogwga"}

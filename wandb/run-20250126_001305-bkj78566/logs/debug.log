@@ -1,0 +1,23 @@
+2025-01-26 00:13:05,662 INFO    MainThread:2795228 [wandb_setup.py:_flush():68] Current SDK version is 0.19.0
+2025-01-26 00:13:05,663 INFO    MainThread:2795228 [wandb_setup.py:_flush():68] Configure stats pid to 2795228
+2025-01-26 00:13:05,663 INFO    MainThread:2795228 [wandb_setup.py:_flush():68] Loading settings from /home/zhli3162/.config/wandb/settings
+2025-01-26 00:13:05,664 INFO    MainThread:2795228 [wandb_setup.py:_flush():68] Loading settings from /projects/zhli3162/llama3_2_ambigous/wandb/settings
+2025-01-26 00:13:05,664 INFO    MainThread:2795228 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2025-01-26 00:13:05,665 INFO    MainThread:2795228 [wandb_init.py:_log_setup():528] Logging user logs to /projects/zhli3162/llama3_2_ambigous/wandb/run-20250126_001305-bkj78566/logs/debug.log
+2025-01-26 00:13:05,666 INFO    MainThread:2795228 [wandb_init.py:_log_setup():529] Logging internal logs to /projects/zhli3162/llama3_2_ambigous/wandb/run-20250126_001305-bkj78566/logs/debug-internal.log
+2025-01-26 00:13:05,666 INFO    MainThread:2795228 [wandb_init.py:init():639] calling init triggers
+2025-01-26 00:13:05,667 INFO    MainThread:2795228 [wandb_init.py:init():645] wandb.init called with sweep_config: {}
+config: {'model': 'Molmo+SAM', 'dataset': 'PACO', 'checkpoint': '/scratch/alpine/zhli3162/.cache/sam/sam_vit_h_4b8939.pth', 'molmo_model': 'Molmo-7B-D-0924'}
+2025-01-26 00:13:05,667 INFO    MainThread:2795228 [wandb_init.py:init():688] starting backend
+2025-01-26 00:13:05,667 INFO    MainThread:2795228 [wandb_init.py:init():692] sending inform_init request
+2025-01-26 00:13:05,677 INFO    MainThread:2795228 [backend.py:_multiprocessing_setup():104] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-01-26 00:13:05,678 INFO    MainThread:2795228 [wandb_init.py:init():705] backend started and connected
+2025-01-26 00:13:05,681 INFO    MainThread:2795228 [wandb_init.py:init():798] updated telemetry
+2025-01-26 00:13:05,703 INFO    MainThread:2795228 [wandb_init.py:init():830] communicating run to backend with 90.0 second timeout
+2025-01-26 00:13:05,955 INFO    MainThread:2795228 [wandb_init.py:init():882] starting run threads in backend
+2025-01-26 00:13:06,242 INFO    MainThread:2795228 [wandb_run.py:_console_start():2443] atexit reg
+2025-01-26 00:13:06,242 INFO    MainThread:2795228 [wandb_run.py:_redirect():2293] redirect: wrap_raw
+2025-01-26 00:13:06,242 INFO    MainThread:2795228 [wandb_run.py:_redirect():2358] Wrapping output streams.
+2025-01-26 00:13:06,242 INFO    MainThread:2795228 [wandb_run.py:_redirect():2383] Redirects installed.
+2025-01-26 00:13:06,248 INFO    MainThread:2795228 [wandb_init.py:init():925] run started, returning control to user process
+2025-01-26 00:14:15,985 WARNING MsgRouterThr:2795228 [router.py:message_loop():75] message_loop has been closed
