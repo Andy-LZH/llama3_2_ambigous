@@ -6,10 +6,10 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from segment_anything import SamPredictor, sam_model_registry
-from pycocotools.mask import decode, encode, area
 from matplotlib.path import Path
 from pycocotools.cocoeval import COCOeval
 from pycocotools import mask as maskUtils
+from pycocotools.coco import COCO
 from script.utils import loader
 import wandb
 import argparse
@@ -71,20 +71,20 @@ def extract_points(zs_output, image_width, image_height):
     ]
 
 
-def extract_masks(input_points):
+def extract_masks_score(input_points):
     """
     Extract masks from a zs_output string.
     """
     points = input_points
     if points:
         input_point = np.array([points])
-        masks, _, _ = predictor.predict(
+        masks, confidence_score, _ = predictor.predict(
             point_coords=input_point,
             point_labels=[1],
             box=None,
             multimask_output=False,
         )
-        return masks
+        return masks, confidence_score
     return None
 
 
@@ -118,6 +118,7 @@ def polygon_to_binary_mask(polygon, image_height, image_width):
 
     return binary_mask
 
+
 def polygon_to_RLE(polygon, image_height, image_width):
     """
     Convert a single polygon to RLE.
@@ -136,7 +137,7 @@ def polygon_to_RLE(polygon, image_height, image_width):
     # If there are multiple polygons, merge them into a single RLE
     if isinstance(rle, list):
         rle = maskUtils.merge(rle)
-    
+
     return rle
 
 
@@ -180,6 +181,75 @@ def handling_data_point(data: dict):
 
     molmo_output = data.get("ZS", None)
     return molmo_output, image, image_height, image_width
+
+
+def calculate_mAP(rles_molmo, rles_gt, question, img, score):
+    """
+    Calculate the mAP between the predicted and ground truth masks.
+    """
+    coco_gt = COCO()
+    coco_dt = COCO()
+
+    annotation_gt_list = []
+    for i, rle in enumerate(rles_gt):
+        annotation_gt = {
+            "id": i + 1,
+            "image_id": 1,
+            "category_id": 1,
+            "segmentation": rle,
+            "area": float(maskUtils.area(rle)),
+            "bbox": list(maskUtils.toBbox(rle)),
+            "iscrowd": 0,
+        }
+        annotation_gt_list.append(annotation_gt)
+
+    coco_gt.dataset["annotations"] = annotation_gt_list
+    coco_gt.dataset["categories"] = [{"id": 1, "name": question}]
+    coco_gt.dataset["images"] = [
+        {
+            "id": 1,
+            "file_name": img["file_name"],
+            "height": img["height"],
+            "width": img["width"],
+        }
+    ]
+    coco_gt.createIndex()
+
+    # Add predicted annotations
+    annotation_dt_list = []
+    for i, rle in enumerate(rles_molmo):
+        annotation_dt = {
+            "id": i + 1,
+            "image_id": 1,
+            "category_id": 1,
+            "segmentation": rle,
+            "area": float(maskUtils.area(rle)),
+            "bbox": list(maskUtils.toBbox(rle)),
+            "iscrowd": 0,
+            "score": score / 100,
+        }
+        annotation_dt_list.append(annotation_dt)
+    coco_dt.dataset["annotations"] = annotation_dt_list
+    coco_dt.dataset["categories"] = [{"id": 1, "name": question}]
+    coco_dt.dataset["images"] = [
+        {
+            "id": 1,
+            "file_name": img["file_name"],
+            "height": img["height"],
+            "width": img["width"],
+        }
+    ]
+    coco_dt.createIndex()
+
+    # Evaluate mAP
+    coco_eval = COCOeval(coco_gt, coco_dt, iouType="segm")
+    coco_eval.evaluate()
+    coco_eval.accumulate()
+    coco_eval.summarize()
+
+    print(coco_eval.stats)
+
+    return coco_eval.stats[0]  # mAP
 
 
 # define main function here
@@ -250,9 +320,7 @@ if __name__ == "__main__":
             "imageURL": data["imageURL"],
             "ambiguity": data["ambiguity"],
             "type": data.get("type", None),
-            "focus_ambiguity_attribute": data.get(
-                "focus_ambiguity_attribute", None
-            ),
+            "focus_ambiguity_attribute": data.get("focus_ambiguity_attribute", None),
             "zs_molmo_output": data.get("ZS", None),
             "gt_masks_location": None,
             "pred_masks_location": None,
@@ -271,7 +339,7 @@ if __name__ == "__main__":
             plt.figure(figsize=(10, 10))
             plt.imshow(image)
             for index, points in enumerate(molmo_points):
-                masks = extract_masks(list(points))
+                masks, confidence_score = extract_masks_score(list(points))
                 if masks is not None:
                     show_points(np.array([list(points)]), np.array([1]), plt.gca())
                     show_mask(masks[0], plt.gca())
@@ -285,7 +353,7 @@ if __name__ == "__main__":
             # now encode the masks to rle and merge together
             rles_molmo = []
             for index, masks in enumerate(masks_molmo):
-                masks =  np.asfortranarray(masks)
+                masks = np.asfortranarray(masks)
                 rle = maskUtils.encode(masks[0])
                 rles_molmo.append(rle)
             rle_molmo = maskUtils.merge(rles_molmo)
@@ -303,10 +371,8 @@ if __name__ == "__main__":
             rles_gt.append(rle)
         gt_rle = maskUtils.merge(rles_gt)
         gt_binary_masks = maskUtils.decode(gt_rle)
-        gt_binary_masks = gt_binary_masks.astype(np.uint8) 
+        gt_binary_masks = gt_binary_masks.astype(np.uint8)
 
-
-        
         # draw the gt masks
         plt.figure(figsize=(10, 10))
         plt.imshow(image)
@@ -318,18 +384,51 @@ if __name__ == "__main__":
         )
 
         if molmo_points is not None:
-            iou = maskUtils.iou(
-                [rle_molmo], [gt_rle], [0])
-            print(iou)
-            union_iou_all += iou[0][0]
+            # add padding to rles_molmo or rles_gt such that they have same length
+            # rles_molmo, rles_gt = add_padding_if_mixmatch(rles_molmo, rles_gt, image_height, image_width)
+            iou_matrix = maskUtils.iou(rles_molmo, rles_gt, [0] * len(rles_gt))
+            iou_matrix = np.array(iou_matrix)
+            max_iou = np.max(iou_matrix)
 
-        wandb.log(output_dict)
+            rles_gt_merge = maskUtils.merge(rles_gt)
+            rles_molmo_merge = maskUtils.merge(rles_molmo)
+            union_iou = maskUtils.iou([rles_molmo_merge], [rles_gt_merge], [0])
+            union_iou = union_iou[0][0]
+
+            print("Union IoU:", union_iou)
+            print("Max IoU:", max_iou)
+
+            mAP = calculate_mAP(
+                rles_molmo,
+                rles_gt,
+                data["question"],
+                {
+                    "file_name": data["imageURL"],
+                    "height": image_height,
+                    "width": image_width,
+                },
+                confidence_score[0],
+            )
+
+            # log the metrics
+            wandb.log(
+                {
+                    "Union IoU": union_iou,
+                    "Max IoU": max_iou,
+                    "mAP": mAP,
+                }
+            )
+            union_iou_all += union_iou
+            max_iou_all += max_iou
+            map_all += mAP
+
         outputs.append(output_dict)
 
     wandb.log(
         {
-            "final_iou": union_iou_all / len(dataset),
-            "num_samples": len(dataset),
+            "Union IoU": union_iou_all / len(dataset),
+            "Max IoU": max_iou_all / len(dataset),
+            "mAP": map_all / len(dataset),
         }
     )
 
